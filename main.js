@@ -9,22 +9,22 @@ let innsbruck = {
 // WMTS Hintergrundlayer der eGrundkarte Tirol definieren
 const eGrundkarteTirol = {
     sommer: L.tileLayer(
-        "http://wmts.kartetirol.at/gdi_summer/{z}/{x}/{y}.png", {
+        "https://wmts.kartetirol.at/gdi_summer/{z}/{x}/{y}.png", {
             attribution: `Datenquelle: <a href="https://www.data.gv.at/katalog/dataset/land-tirol_elektronischekartetirol">eGrundkarte Tirol</a>`
         }
     ),
     winter: L.tileLayer(
-        "http://wmts.kartetirol.at/gdi_winter/{z}/{x}/{y}.png", {
+        "https://wmts.kartetirol.at/gdi_winter/{z}/{x}/{y}.png", {
             attribution: `Datenquelle: <a href="https://www.data.gv.at/katalog/dataset/land-tirol_elektronischekartetirol">eGrundkarte Tirol</a>`
         }
     ),
     ortho: L.tileLayer(
-        "http://wmts.kartetirol.at/gdi_ortho/{z}/{x}/{y}.png", {
+        "https://wmts.kartetirol.at/gdi_ortho/{z}/{x}/{y}.png", {
             attribution: `Datenquelle: <a href="https://www.data.gv.at/katalog/dataset/land-tirol_elektronischekartetirol">eGrundkarte Tirol</a>`
         }
     ),
     nomenklatur: L.tileLayer(
-        "http://wmts.kartetirol.at/gdi_nomenklatur/{z}/{x}/{y}.png", {
+        "https://wmts.kartetirol.at/gdi_nomenklatur/{z}/{x}/{y}.png", {
             attribution: `Datenquelle: <a href="https://www.data.gv.at/katalog/dataset/land-tirol_elektronischekartetirol">eGrundkarte Tirol</a>`,
             pane: "overlayPane",
         }
@@ -74,3 +74,41 @@ L.control.fullscreen().addTo(map);
 overlays.gpx.addTo(map);
 
 // GPX Track Layer implementieren
+let gpxTrack = new L.GPX("./data/07.gpx", {
+    async: true,
+    marker_options: {
+      startIconUrl: 'icons/start.png',
+      endIconUrl: 'icons/finish.png',
+      shadowUrl: null,
+      iconSize: [32, 37],
+      iconAnchor: [16, 37],
+    },
+    polyline_options: {
+        color: "black",
+        dashArray: [2, 5],
+    },
+}).addTo(overlays.gpx);
+
+gpxTrack.on("loaded", function(evt) {
+    // console.log("loaded gpx event: ", evt);
+    let gpxLayer = evt.target;
+    map.fitBounds(gpxLayer.getBounds());
+    let popup = `<h3>${gpxLayer.get_name()}</h3>
+    <ul>
+      <li>Streckenlänge: ${(gpxLayer.get_distance()/1000).toFixed()} km</li>
+      <li>tiefster Punkt: ${gpxLayer.get_elevation_min()} m</li>
+      <li>höchster Punkt: ${gpxLayer.get_elevation_max()} m</li>
+      <li>Hoehenmeter bergauf: ${gpxLayer.get_elevation_gain().toFixed()} m</li>
+      <li>Hoehenmeter bergab: ${gpxLayer.get_elevation_loss().toFixed()} m</li>`;
+    gpxLayer.bindPopup(popup);
+});
+
+let elevationControl = L.control.elevation({
+    time: false,
+    elevationDiv: "#profile",
+    theme: 'bike-tirol',
+    height: 200,
+}).addTo(map);
+gpxTrack.on("addline", function(evt) {
+    elevationControl.addData(evt.line);
+});

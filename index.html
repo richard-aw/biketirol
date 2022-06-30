@@ -24,6 +24,13 @@
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 
+    <!-- Leaflet gpx plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js" integrity="sha512-BsUtn1Ar2O78Q8YkY1f2pkioHOs8H43KUlP3PHus8lyAMODNq1CmemnU435dFk/SU37OGG+ooxvmEhAcNTEBFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- leaflet-elevation -->
+    <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css" />
+    <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
+
     <!-- eigene Stile und Hauptskript -->
     <link rel="stylesheet" href="main.css">
     <script defer src="main.js"></script>
@@ -36,33 +43,27 @@
                 <h2><i class="fa-solid fa-person-biking"></i> Bike Trail Tirol Beispiel</h2>
             </div>
             <nav>
-                <i class="fab fa-github"></i> <a href="https://github.com/webmapping/biketirol">Github</a>
+                <i class="fab fa-github"></i> <a href="https://github.com/webmapping/biketirol">Github</a> |
+                <i class="fa-solid fa-book-open-reader"></i> Howto
+                <a href="https://webmapping.github.io/biketirol/howto1" title="Visualisieren eines GPX-Tracks mit leaflet-gpx">1</a>,
+                <a href="https://webmapping.github.io/biketirol/howto2" title="Höhenprofil aus dem GPX-Track mit leaflet-elevation erstellen">2</a>
             </nav>
         </header>
         <article>
-            <h1><a href=""></a>Etappe 21: Windegg - Matrei</h1>
-            <p>Windegg, Ausgangspunkt und gleichzeit höchster Punkt dieser Tour, 
-            führt zur Gänze auf Asphaltstraßen bis nach Matrei am Brenner.
-             Während der 27 Kilometer langen Tour genießen Sie nicht nur einen herrlichen Blick auf Innsbruck, 
-             sondern passieren auch die malerische Gemeinde Rinn mit ihrer bekannten Kirche, sowie die Orte Sistrans, 
-             Lans und Patsch.</p>
+            <h1>Etappe 07: Scharnitz - Achensee</h1>
+            <p>Diese als schwierig eingestufte Tour verlangt Können und Kondition. Mit 60 Kilometern Länge und 1.850 zu überwindenden Höhenmetern zählt sie zu einer der längsten und schwierigsten Etappen. Sie führt Sie durch die kontrastreiche Landschaft des Karwendels, das Ihnen mit schroffen Felsen, satten Wiesen und grünen Wäldern das breite Spektrum der Bergwelt offenbart.</p>
 
             <div id="map"></div>
+            <div id="profile"></div>
 
             <h3>Streckenbeschreibung</h3>
-            <p>Vom Gasthaus Windegg geht es über die Asphaltstraße hinunter nach Tulfes. 
-                Im Ort zweigt man links auf die Straße nach Rinn/Sistrans ab. Leicht auf und ab verläuft die Strecke durch Wiesen und Felder nach Rinn bis zum Kreisverkehr vor Sistrans. 
-                Hier zweigt man halblinks ab und erreicht nach einem weiteren Kilometer das Dorf (1 Stunde ab Windegg). Kurz vor der Kirche beim Dorfcafe geht es rechts ab nach Lans, 
-                wo man sich im Dorf an den Wegweiser Igls hält und 70 Meter danach nach Patsch abzweigt. Nun folgt ein Anstieg bis zur Olympia Bob- und Rodelbahn. 
-                Fast eben geht es weiter bis zur Abzweigung nach Innsbruck. Hier fährt man geradeaus weiter, vorbei am Grünwalderhof und gleich danach links nach Patsch. 
-                Auf dieser Straße radelt man bis ins Etappenziel. Auf den Westhängen des Wipptals fährt man durch die Streusiedlung Ellbögen zwischen Wiesen und Wäldchen, 
-                bis man zuerst Pfons und kurz danach Matrei erreicht (2 Stunden ab Sistrans).</p>
+            <p>Nach dem Start radelt man zunächst einen Kilometer taleinwärts, ehe man links auf die Forststraße zum Karwendelhaus abzweigt. Ohne Abzweigungen fährt man nun durch das Karwendeltal bis zum Karwendelhaus. Nur ein kurzer Anstieg ist es bis zum Hochalmsattel. Nach einer Abfahrt erreicht man den Kleinen Ahornboden und fährt nun auf gut ausgebauten Forststraßen durchs Johannestal Richtung Hinterriß. Im Rißtal angekommen radelt man taleinwärts bis zur Abzweigung auf das Plumsjoch. Nun geht es noch einmal gute 500 Höhenmeter zur Plumsjochhütte hinauf. Nach der Einkehr folgt eine technisch schwierige Abfahrt (<a href="http://maps.achensee.com/#resourceDetail,799661">Singletrail Plumsjoch</a> oder Schiebestrecke) ins Gerntal und auf einer asphaltierten Straße weiter nach Pertisau. Nach der Ortsdurchfahrt radelt man direkt neben dem Achensee auf einem Radweg zum Etappenziel beim Parkplatz in Maurach- Buchau.</p>
         </article>
         <footer>
             <strong>Datenquellen:</strong>
             <nav>
                 <a href="https://www.tirol.at/reisefuehrer/sport/mountainbiken/bike-trail-tirol">Bike Trail Tirol | Mountainbike-Rundkurs durch Tirol in Österreich</a> |
-                <a href="https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren/a-bike-trail-tirol-windegg-matrei">Etappe 21: Windegg - Matrei</a>
+                <a href="https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren/a-bike-trail-tirol-scharnitz-achensee">Etappe 07: Scharnitz - Achensee</a>
             </nav>
         </footer>
     </main>
